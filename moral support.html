@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,6 +90,47 @@
 			header { padding: 0.8rem 1rem; }
 			nav { display: none; }
 		}
+
+         /* Hamburger button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Mobile nav */
+        @media (max-width: 768px) {
+        .menu-toggle {
+            display: block;
+        }
+
+        nav {
+                display: none;
+                flex-direction: column;
+                background: #ff8a80;
+                position: absolute;
+                top: 70px;
+                right: 1rem;
+                width: 200px;
+                border-radius: 12px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                padding: 0.5rem 0;
+                z-index: 1000;
+        }
+
+        nav a {
+            padding: 0.7rem 1rem;
+            margin: 0;
+        }
+
+        nav.show {
+            display: flex;
+        }
+        }
+
 	</style>
 </head>
 <body>
@@ -98,12 +140,12 @@
 				<span>🧸</span> Child Diabetes Care
 			</div>
 			<nav>
-				<a href="https://akhilasaichowdary-darapaneni.github.io/home/home.html"target="_blank">Home</a>
-					<a href="https://akhilasaichowdary-darapaneni.github.io/causes/causes.html"target="_blank">Causes</a>
-					<a href="https://akhilasaichowdary-darapaneni.github.io/precautions/precautions.html"target="_blank">Precautions</a>
-					<a href="https://akhilasaichowdary-darapaneni.github.io/dailycare/daily%20care.html"target="_blank">Daily Care</a>
-					<a href="https://akhilasaichowdary-darapaneni.github.io/medication/medication.html"target="_blank">Medication</a>
-					<a href="https://akhilasaichowdary-darapaneni.github.io/moralsupport/moral%20support.html"target="_blank">Moral Support</a>
+				<a href="https://akhilasaichowdary-darapaneni.github.io/home/home.html">Home</a>
+					<a href="https://akhilasaichowdary-darapaneni.github.io/causes/causes.html">Causes</a>
+					<a href="https://akhilasaichowdary-darapaneni.github.io/precautions/precautions.html">Precautions</a>
+					<a href="https://akhilasaichowdary-darapaneni.github.io/dailycare/daily%20care.html">Daily Care</a>
+					<a href="https://akhilasaichowdary-darapaneni.github.io/medication/medication.html">Medication</a>
+					<a href="https://akhilasaichowdary-darapaneni.github.io/moralsupport/moral%20support.html">Moral Support</a>
 			</nav>
 		</div>
 	</header>
@@ -181,6 +223,32 @@
 		</section>
 	</main>
 
+    <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const nav = document.getElementById("mainNav");
+
+    if (menuToggle && nav) {
+        menuToggle.addEventListener("click", function (e) {
+            e.stopPropagation();
+            nav.classList.toggle("show");
+        });
+
+        // Close when clicking outside
+        document.addEventListener("click", function (e) {
+            if (!nav.contains(e.target) && !menuToggle.contains(e.target)) {
+                nav.classList.remove("show");
+            }
+        });
+
+        // Close when clicking a link
+        nav.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                nav.classList.remove("show");
+            });
+        });
+    }
+    
+    </script>
 	<footer>
 		You and your child do not need to be perfect. You only need to keep going,
 		asking questions, and taking the next small step with kindness.
